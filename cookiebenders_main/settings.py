@@ -75,6 +75,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cookiebenders_db',
+        'USER': 'cookiebenders_user',
+        'PASSWORD' : 'password',
         'HOST': 'localhost',
         'PORT': '5432',
     }
