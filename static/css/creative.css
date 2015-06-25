@@ -1,3 +1,15 @@
+/* Custom css for form */
+#payment_meth_radio li {
+    display:inline;
+    list-style-type: none;
+    padding-right: 20px;
+
+}
+#id_special_req {
+    width: 300px;
+    height: 100px;
+}
+
 /*!
  * Start Bootstrap - Creative Bootstrap Theme (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
@@ -56,8 +68,9 @@ p {
 }
 
 .bg-dark {
-    color: #fff;
+    color: black; /* color of text in bg dark section */
     background-color: #222;
+    padding: 30px 25px 25px 25px; /* top right bot left */
 }
 
 .text-faded {
@@ -65,11 +78,11 @@ p {
 }
 
 section {
-    padding: 100px 0;
+    padding: 100px 0; 
 }
 
 aside {
-    padding: 50px 0;
+    padding: 50px 0; 
 }
 
 .no-padding {

@@ -55,11 +55,11 @@
                     <li>
                         <a class="page-scroll" href="#about">About</a>
                     </li>
-<!--                     <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li> -->
                     <li>
                         <a class="page-scroll" href="#menu">Menu and Pricing</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#custom_order">Order</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
@@ -236,14 +236,46 @@
         </div>
     </section>
 
-    <aside class="bg-dark">
-        <div class="container text-center">
-            <div class="call-to-action">
+    <section id="custom_order" class="bg-dark">
+        <div class="container text-center panel panel-default">
+            <div class="panel-heading">
+                <h3><strong>Custom Cookie Order</strong>  </h3>
+            </div>
+            <form role="form-inline" id="sale_form" method="POST" action="#">
+                {% csrf_token %}
+                {% for hidden in saleform.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+
+                {% for field in saleform.visible_fields %}
+                <div class="form-group input-group">
+                    {% if field.label == 'num_cookies' %} 
+                        {{ field.errors }} 
+                        {{ field }}
+                        <div class="input-group-addon"> <span class="add-on"> cookies</span></div>
+
+                    {% elif field.label == 'num_milk' %}
+                    <div class="inline">
+                        Milk {{ field.errors }} {{ field }}
+                    </div>
+
+                    {% else %}
+                    <div class="controls">
+                        {{ field.label }}
+                        {{ field.errors }}
+                        {{ field }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <input href="#" type="submit" name="submit_custom_order" id="submit_custom_order" class="btn btn-success btn-xl" value="Place Order" />
+            </form>
+            <!-- <div class="call-to-action">
                 <h2>Free Download at Start Bootstrap!</h2>
                 <a href="#" class="btn btn-default btn-xl wow tada">Download Now!</a>
-            </div>
+            </div> -->
         </div>
-    </aside>
+    </section>
 
     <section id="contact">
         <div class="container">
