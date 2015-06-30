@@ -21,7 +21,7 @@ class SaleForm(forms.ModelForm):
             ('C', 'Cash'),
             ('V', 'Venmo'),    
         ),
-        label='Payment method'
+        label='payment_method'
     )
 
     # Perhaps this should be a dropdown that updates?? give it autofill
@@ -29,19 +29,21 @@ class SaleForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'placeholder':'Delivery location (your room) as [hallname roomnumber]'}),
         max_length=128,
-        label='Delivery location'
+        label='delivery_location'
     )
 
     name = forms.CharField(
         widget=forms.TextInput(attrs={
             'placeholder':'Your name'}),
         max_length=128,
+        label='name'
         )
 
     phone = forms.CharField(
         widget=forms.TextInput(attrs={
             'placeholder':'Your number to help find you'}),
         max_length=16,
+        label='phone'
     )
 
     # Special request as a textbox, optional as specified in model (blank=True)
@@ -49,10 +51,12 @@ class SaleForm(forms.ModelForm):
         widget=forms.Textarea(attrs={
             'placeholder':'Optional: Enter any special request with your order'}),
         max_length=5000,
+        required=False,
+        label='special_req'
     )
 
     class Meta:
         model = Sale
-        fields = ('num_cookies', 'num_milk', 'payment_meth', 
-                    'location', 'name', 'phone','special_req' )
+        fields = ('num_cookies', 'num_milk', 'location', 'name', 'phone', 'payment_meth', 
+                    'special_req' )
         exclude = ('cost', 'time_start', 'time_deliv', 'result',)

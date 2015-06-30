@@ -236,47 +236,140 @@
         </div>
     </section>
 
-    <section id="custom_order" class="bg-dark">
-        <div class="container text-center panel panel-default">
-            <div class="panel-heading">
-                <h3><strong>Custom Cookie Order</strong>  </h3>
+    <section id="custom_order1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h3 class="text-uppercase"><strong>Custom Order</strong></h3>
+                    <p> Can't find a package that works for you? Fill out the form below to create a custom order. </p>
+                </div>
             </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="boxed-form">
+                        <form id="sale_form1" method="POST" action="#">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-5"> <!-- Cookies, Milk | Location | Payment option -->
+                                        <div class="form-group col-xs-12">
+                                            <div class="col-xs-6">
+                                                <label for="name">Cookies </label>
+                                                <input class="form-control" id="id_num_cookies" name="num_cookies" type="number" max="24" min="3" value="3">
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="name">Milk </label>
+                                                <input class="form-control" id="id_num_milk" name="num_milk" type="number" max="3" min="0" value="0"> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">Deliver to </label>
+                                            <input class="form-control" id="id_location" maxlength="128" name="location" 
+                                            placeholder="Hallway and Room # " type="text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">Payment Method</label>
+                                            <ul id="payment_meth_radio">
+                                            <li>
+                                                <label for="payment_meth_radio_0">
+                                                <input id="payment_meth_radio_0" name="payment_meth" type="radio" value="C"> Cash</label>
+                                            </li>
+                                            <li>
+                                                <label for="payment_meth_radio_1">
+                                                <input id="payment_meth_radio_1" name="payment_meth" type="radio" value="V"> Venmo</label>
+                                            </li>
+                                            </ul>
+                                        </div>
+                                </div>
+                                <div class="col-sm-7"> <!-- Name Number | Special Request-->
+                                    <div class="form-group form-inline col-xs-12">
+                                        <div class="col-sm-6 col-xs-12">
+                                            <label for="name">Name</label>
+                                            <input id="id_name" class="form-control" maxlength="128" name="name" placeholder="Name" type="text">
+                                        </div>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <label for="name">Number</label>
+                                            <input id="id_phone" class="form-control" maxlength="16" name="phone" placeholder="Number" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Special Requests</label>
+                                        <textarea id="id_special_req" class="form-control" maxlength="5000" name="special_req" placeholder="Optional: Enter any special request with your order"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <button type="submit" class="btn pull-right" id="submit_custom_order">Place Order</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+<!-- 
+    <section id="custom_order" class="bg-dark">
+        <div class="container text-center panel panel-primary">
+            <div class="panel-heading">
+                <h3><strong>Custom Order</strong>  </h3>
+            </div>
+            <div class="panel-body">
             <form role="form-inline" id="sale_form" method="POST" action="#">
                 {% csrf_token %}
                 {% for hidden in saleform.hidden_fields %}
                     {{ hidden }}
                 {% endfor %}
-
+                <br> 
                 {% for field in saleform.visible_fields %}
-                <div class="form-group input-group">
+                
                     {% if field.label == 'num_cookies' %} 
-                        {{ field.errors }} 
-                        {{ field }}
-                        <div class="input-group-addon"> <span class="add-on"> cookies</span></div>
-
+                    <div class="row">
+                        <div class="form-group col-lg-2 col-sm-2 col-xs-10">
+                            {{ field.errors }} 
+                            <input class="input-lg" id="id_num_cookies" name="num_cookies" type="number" max="24" min="3" value="3"><span class="label label-info">cookies</span>
+                        </div>
                     {% elif field.label == 'num_milk' %}
-                    <div class="inline">
-                        Milk {{ field.errors }} {{ field }}
+                        <div class="form-group col-lg-3 col-sm-3 col-xs-10">
+                            {{ field.errors }}  
+                            <input class="input-lg" id="id_num_milk" name="num_milk" type="number" max="3" min="0" value="0"> 
+                            <h4><span class="label label-info">glasses of milk</span></h4>
+                        </div>
+                    {% elif field.label == 'delivery_location' %}
+                        <div class="form-group col-lg-7 col-sm-7 col-xs-12">
+                        {{ field.errors }}
+                            <input class="input-lg" id="id_location" maxlength="128" name="location" 
+                             placeholder="Hallway and Room # " type="text">
+                        </div>
                     </div>
-
+                    {% elif field.label == 'name' %}
+                        <div class="form-group col-lg-6 col-xs-12">
+                        {{ field.errors }}
+                            <input id="id_name" maxlength="128" name="name" placeholder="Name" type="text">
+                        </div>
+                    {% elif field.label == 'phone' %}
+                        <div class="form-group col-lg-6 col-xs-12">
+                        {{ field.errors }}
+                            <input id="id_phone" maxlength="16" name="phone" placeholder="Number" type="text">
+                        </div> 
                     {% else %}
-                    <div class="controls">
+                    <div class="form-group">
                         {{ field.label }}
                         {{ field.errors }}
+
                         {{ field }}
                     </div>
                     {% endif %}
-                </div>
+                
                 {% endfor %}
                 <input href="#" type="submit" name="submit_custom_order" id="submit_custom_order" class="btn btn-success btn-xl" value="Place Order" />
             </form>
-            <!-- <div class="call-to-action">
-                <h2>Free Download at Start Bootstrap!</h2>
-                <a href="#" class="btn btn-default btn-xl wow tada">Download Now!</a>
-            </div> -->
+            </div>
+
         </div>
     </section>
-
+ -->
     <section id="contact">
         <div class="container">
             <div class="row">
