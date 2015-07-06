@@ -7,6 +7,14 @@
 
 }
 
+.round-edge {
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-box-shadow:0px 5px 10px 5px #888888;
+    -moz-border-radius:0px 5px 10px 5px #888888;
+    box-shadow: 0px 5px 10px 5px #888888;
+}
 
 #id_special_req {
     width:100%;
@@ -27,18 +35,52 @@
 
 .boxed-form{
     padding:20px;
-    background-color: #f05f40;
+    /*background-color: #f05f40;*/
+    background-color: #fe8703;
     font-family:'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
 
 .bg-primary1{
-    background-color: #f05f40;
+    background-color: #fe8703;
 }
 
+/* for form inputs without a label */
 .form-pad-top{
     margin-top:22px; /* 22 as determined by console */
 }
 
+/* small xs only, to line up when resizes */
+@media(max-width:767px) {
+    .form-pad-top{
+        margin-top:0px; /* 22 as determined by console */
+    }
+}
+
+.i-heart {
+    color:#f42626;
+}
+
+.i-money {
+    color:#199a0d;
+}
+
+.i-bike{
+    color:#5555df;
+}
+
+.i-laptop{
+    color:#94a6a7;
+}
+
+.footer-links-list a{
+    text-decoration: none;
+    font-family:'Open Sans','Helvetica Neue',Arial,sans-serif;
+}
+
+.footer-copyright{
+    font-family:'Open Sans','Helvetica Neue',Arial,sans-serif;
+}
+    
 /*!
  * Start Bootstrap - Creative Bootstrap Theme (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
@@ -57,7 +99,7 @@ body {
 
 hr {
     max-width: 50px;
-    border-color: #f05f40;
+    background-color: #fe8703;
     border-width: 3px;
 }
 
@@ -66,7 +108,7 @@ hr.light {
 }
 
 a {
-    color: #f05f40;
+    color: #fe8703;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
@@ -93,11 +135,11 @@ p {
 }
 
 .bg-primary {
-    background-color: #f05f40;
+    background-color: #fe8703;
 }
 
 .bg-dark {
-    color: black; /* color of text in bg dark section */
+    color: #fff; /* color of text in bg dark section */
     background-color: #222;
     padding: 30px 25px 25px 25px; /* top right bot left */
 }
@@ -131,7 +173,7 @@ aside {
     text-transform: uppercase;
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
     font-weight: 700;
-    color: #f05f40;
+    color: #fe8703;
 }
 
 .navbar-default .navbar-header .navbar-brand:hover,
@@ -149,12 +191,12 @@ aside {
 
 .navbar-default .nav > li>a:hover,
 .navbar-default .nav>li>a:focus:hover {
-    color: #f05f40;
+    color: #fe8703;
 }
 
 .navbar-default .nav > li.active>a,
 .navbar-default .nav>li.active>a:focus {
-    color: #f05f40!important;
+    color: #fe8703!important;
     background-color: transparent;
 }
 
@@ -190,12 +232,14 @@ aside {
 
     .navbar-default.affix {
         border-color: rgba(34,34,34,.05);
-        background-color: #fff;
+        /*background-color: #fff;*/ /* make the shrunk navbar white */
+        /*background-color:rgba(255,255,255,.2);*/ /* opaque shrunk navbar */
+        background-color: #222;
     }
 
     .navbar-default.affix .navbar-header .navbar-brand {
         font-size: 14px;
-        color: #f05f40;
+        color: #fe8703;
     }
 
     .navbar-default.affix .navbar-header .navbar-brand:hover,
@@ -205,12 +249,13 @@ aside {
 
     .navbar-default.affix .nav > li>a,
     .navbar-default.affix .nav>li>a:focus {
-        color: #222;
+        /*color: #222;*/ /* make the navbar text black on default */
+        color:#fff;
     }
 
     .navbar-default.affix .nav > li>a:hover,
     .navbar-default.affix .nav>li>a:focus:hover {
-        color: #f05f40;
+        color: #fe8703;
     }
 }
 
@@ -317,7 +362,7 @@ header .header-content .header-content-inner p {
     text-align: center;
     color: #fff;
     opacity: 0;
-    background: rgba(240,95,64,.9);
+    background: rgba(240,127,0,.9); /* highlight color of box for menu*/
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
@@ -366,7 +411,7 @@ header .header-content .header-content-inner p {
 }
 
 .text-primary {
-    color: #f05f40;
+    color: #fe8703;
 }
 
 .no-gutter > [class*=col-] {
@@ -428,9 +473,9 @@ fieldset[disabled] .btn-default.active {
 }
 
 .btn-primary {
-    border-color: #f05f40;
+    border-color: #fe8703;
     color: #fff;
-    background-color: #f05f40;
+    background-color: #fe8703;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
@@ -444,7 +489,8 @@ fieldset[disabled] .btn-default.active {
 .open > .dropdown-toggle.btn-primary {
     border-color: #ed431f;
     color: #fff;
-    background-color: #ee4b28;
+    background-color: #fe8703; /* original red orange #ee4b28
+703 */
 }
 
 .btn-primary:active,
@@ -471,12 +517,12 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-    border-color: #f05f40;
-    background-color: #f05f40;
+    border-color: #fe8703;
+    background-color: #fe8703;
 }
 
 .btn-primary .badge {
-    color: #f05f40;
+    color: #fe8703;
     background-color: #fff;
 }
 

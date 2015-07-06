@@ -22,6 +22,7 @@
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="{% static "css/animate.min.css" %}" type="text/css">
 
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static "css/creative.css" %}" type="text/css">
 
@@ -56,10 +57,10 @@
                         <a class="page-scroll" href="#about">About</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#menu">Menu and Pricing</a>
+                        <a class="page-scroll" href="#menu">Menu</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#custom_order">Order</a>
+                        <a class="page-scroll" href="#custom_order">Custom Order</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
@@ -83,19 +84,6 @@
         </div>
     </header>
 
-    <!-- <section class="bg-primary" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">We've got what you need!</h2>
-                    <hr class="light">
-                    <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-                    <a href="#" class="btn btn-default btn-xl">Get Started!</a>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <section id="about">
         <div class="container">
             <div class="row">
@@ -109,28 +97,28 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-laptop wow bounceIn text-primary"></i>
+                        <i class="fa fa-4x fa-laptop wow bounceIn i-laptop"></i>
                         <h3>Order Online</h3>
                         <p class="text-muted">Select a package from the menu below to get started.</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-bicycle wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                        <i class="fa fa-4x fa-bicycle wow bounceIn i-bike" data-wow-delay=".1s"></i>
                         <h3>Fast Delivery</h3>
                         <p class="text-muted">Receive your cookies within our 15 min delivery guarantee.</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-money wow bounceIn text-primary" data-wow-delay=".2s"></i>
+                        <i class="fa fa-4x fa-money wow bounceIn i-money" data-wow-delay=".2s"></i>
                         <h3>Flexible Payment</h3>
                         <p class="text-muted">Choose to pay using cash upon delivery, or with Venmo. </p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
+                        <i class="fa fa-4x fa-heart wow bounceIn i-heart" data-wow-delay=".3s"></i>
                         <h3>Made with Love</h3>
                         <p class="text-muted">Enjoy the cookies warm, fresh, and full of love.</p>
                     </div>
@@ -236,7 +224,7 @@
         </div>
     </section>
 
-    <section id="custom_order1">
+    <section id="custom_order">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -248,7 +236,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <div class="boxed-form">
+                    <div class="boxed-form round-edge">
                         <form id="sale_form1" method="POST" action="#">
                             {% csrf_token %}
                             <div class="row">
@@ -284,7 +272,8 @@
                                 </div>
                                 <div class="col-sm-7"> <!-- Name Number | Special Request-->
                                     <div class="row">
-                                            <div class="form-group col-sm-6 col-xs-12 form-pad-top">
+                                            <div class="form-group col-sm-6 col-xs-12">
+                                                <label for="name">Contact Info</label>
                                                 <input id="id_name" class="form-control" maxlength="128" name="name" placeholder="Name" type="text">
                                             </div>
                                             <div class="form-group col-sm-6 col-xs-12 form-pad-top">
@@ -295,7 +284,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Special Requests</label>
-                                        <textarea id="id_special_req" class="form-control" maxlength="5000" name="special_req" placeholder="Optional: Enter any special request with your order"></textarea>
+                                        <textarea id="id_special_req" class="form-control" maxlength="5000" name="special_req" placeholder="Optional"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-xs-12">
@@ -307,84 +296,21 @@
                 </div>
             </div>
         </div>
-
     </section>
-<!-- 
-    <section id="custom_order" class="bg-dark">
-        <div class="container text-center panel panel-primary">
-            <div class="panel-heading">
-                <h3><strong>Custom Order</strong>  </h3>
-            </div>
-            <div class="panel-body">
-            <form role="form-inline" id="sale_form" method="POST" action="#">
-                {% csrf_token %}
-                {% for hidden in saleform.hidden_fields %}
-                    {{ hidden }}
-                {% endfor %}
-                <br> 
-                {% for field in saleform.visible_fields %}
-                
-                    {% if field.label == 'num_cookies' %} 
-                    <div class="row">
-                        <div class="form-group col-lg-2 col-sm-2 col-xs-10">
-                            {{ field.errors }} 
-                            <input class="input-lg" id="id_num_cookies" name="num_cookies" type="number" max="24" min="3" value="3"><span class="label label-info">cookies</span>
-                        </div>
-                    {% elif field.label == 'num_milk' %}
-                        <div class="form-group col-lg-3 col-sm-3 col-xs-10">
-                            {{ field.errors }}  
-                            <input class="input-lg" id="id_num_milk" name="num_milk" type="number" max="3" min="0" value="0"> 
-                            <h4><span class="label label-info">glasses of milk</span></h4>
-                        </div>
-                    {% elif field.label == 'delivery_location' %}
-                        <div class="form-group col-lg-7 col-sm-7 col-xs-12">
-                        {{ field.errors }}
-                            <input class="input-lg" id="id_location" maxlength="128" name="location" 
-                             placeholder="Hallway and Room # " type="text">
-                        </div>
-                    </div>
-                    {% elif field.label == 'name' %}
-                        <div class="form-group col-lg-6 col-xs-12">
-                        {{ field.errors }}
-                            <input id="id_name" maxlength="128" name="name" placeholder="Name" type="text">
-                        </div>
-                    {% elif field.label == 'phone' %}
-                        <div class="form-group col-lg-6 col-xs-12">
-                        {{ field.errors }}
-                            <input id="id_phone" maxlength="16" name="phone" placeholder="Number" type="text">
-                        </div> 
-                    {% else %}
-                    <div class="form-group">
-                        {{ field.label }}
-                        {{ field.errors }}
 
-                        {{ field }}
-                    </div>
-                    {% endif %}
-                
-                {% endfor %}
-                <input href="#" type="submit" name="submit_custom_order" id="submit_custom_order" class="btn btn-success btn-xl" value="Place Order" />
-            </form>
-            </div>
-
-        </div>
-    </section>
- -->
-    <section id="contact">
+    <section class="bg-dark" id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Let's Get In Touch!</h2>
-                    <hr class="primary">
-                    <p>Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
-                </div>
-                <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                    <p>123-456-6789</p>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
-                    <p><a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a></p>
+                    <ul class="list-inline footer-links-list">
+                        <li>
+                            <a href="#">Contact</a>
+                        </li>
+                        <li>
+                            <a href="#">About Us</a>
+                        </li>
+                    </ul>
+                    <p class="footer-copyright">2015 © CookieBenders</p>
                 </div>
             </div>
         </div>
@@ -392,6 +318,9 @@
 
     <!-- jQuery -->
     <script src="{% static "js/jquery.js"%}"></script>
+
+    <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/bootbox.min.js" %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static "js/bootstrap.min.js"%}"></script>
