@@ -19,7 +19,7 @@ class SaleForm(forms.ModelForm):
             'name':'payment_meth_radio', }),
         choices = (
             ('C', 'Cash'),
-            ('V', 'Venmo'),    
+            ('O', 'Online'),    
         ),
         label='payment_method'
     )

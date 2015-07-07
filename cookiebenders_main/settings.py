@@ -67,7 +67,8 @@ ROOT_URLCONF = 'cookiebenders_main.urls'
 
 WSGI_APPLICATION = 'cookiebenders_main.wsgi.application'
 
-
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_COOKIE_AGE = 1200 # 60 seconds * 20 minutes = how long sessions last
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 

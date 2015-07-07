@@ -72,6 +72,8 @@
         <!-- /.container-fluid -->
     </nav>
 
+    
+
     <header>
         <div class="header-content">
             <div class="header-content-inner">
@@ -84,6 +86,22 @@
         </div>
     </header>
 
+    {% if form_error %}
+    <div class="alert alert-danger fade in" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" class="close" data-dismiss="alert" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Submitted Order Form had Errors. Please re-enter and re-submit.
+    </div>
+    {% endif %}
+
+    {% if active_order %}
+    <div class="alert alert-success fade in" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" class="close" data-dismiss="alert" aria-hidden="true"></span>
+        <span class="sr-only">Ongoing Order</span>
+        Ongoing Order. Delivery at {{ time_deliv }}
+    </div>
+    {% endif %}
+
     <section id="about">
         <div class="container">
             <div class="row">
@@ -95,28 +113,28 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-laptop wow bounceIn i-laptop"></i>
                         <h3>Order Online</h3>
                         <p class="text-muted">Select a package from the menu below to get started.</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-bicycle wow bounceIn i-bike" data-wow-delay=".1s"></i>
                         <h3>Fast Delivery</h3>
                         <p class="text-muted">Receive your cookies within our 15 min delivery guarantee.</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-money wow bounceIn i-money" data-wow-delay=".2s"></i>
                         <h3>Flexible Payment</h3>
                         <p class="text-muted">Choose to pay using cash upon delivery, or with Venmo. </p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-3 col-sm-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-heart wow bounceIn i-heart" data-wow-delay=".3s"></i>
                         <h3>Made with Love</h3>
@@ -265,7 +283,7 @@
                                             </li>
                                             <li>
                                                 <label for="payment_meth_radio_1">
-                                                <input id="payment_meth_radio_1" name="payment_meth" type="radio" value="V"> Venmo</label>
+                                                <input id="payment_meth_radio_1" name="payment_meth" type="radio" value="O"> Online</label>
                                             </li>
                                             </ul>
                                         </div>
