@@ -72,6 +72,21 @@
         <!-- /.container-fluid -->
     </nav>
 
+    {% if form_error %}
+    <div class="alert alert-danger fade in bot-page-alert" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign"></span>
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        Submitted Order Form had Errors. Please re-enter and re-submit.
+    </div>
+    {% endif %}
+
+    {% if active_order %}
+    <div class="alert alert-success fade in bot-page-alert" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign"></span>
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <span id="countdown">Calculating...</span>
+    </div>
+    {% endif %}
     
 
     <header>
@@ -86,21 +101,6 @@
         </div>
     </header>
 
-    {% if form_error %}
-    <div class="alert alert-danger fade in" role="alert">
-        <span class="glyphicon glyphicon-exclamation-sign" class="close" data-dismiss="alert" aria-hidden="true"></span>
-        <span class="sr-only">Error:</span>
-        Submitted Order Form had Errors. Please re-enter and re-submit.
-    </div>
-    {% endif %}
-
-    {% if active_order %}
-    <div class="alert alert-success fade in" role="alert">
-        <span class="glyphicon glyphicon-exclamation-sign" class="close" data-dismiss="alert" aria-hidden="true"></span>
-        <span class="sr-only">Ongoing Order</span>
-        Ongoing Order. Delivery at {{ time_deliv }}
-    </div>
-    {% endif %}
 
     <section id="about">
         <div class="container">
@@ -255,7 +255,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="boxed-form round-edge">
-                        <form id="sale_form1" method="POST" action="#">
+                        <form id="sale_form1" method="POST" action="">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-sm-5"> <!-- Cookies, Milk | Location | Payment option -->
@@ -350,6 +350,31 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{% static "js/creative.js"%}"></script>
+
+    <script>
+        {% if active_order %}
+            console.log("{{ time_deliv }}");
+            var endtime = new Date("{{ time_deliv.isoformat }}");
+            console.log(endtime);
+            var min, sec;
+            var countdown = document.getElementById("countdown");
+            setInterval(function() {
+                var curtime = new Date().getTime();
+                var sec_left = (endtime - curtime) / 1000;
+
+                if (sec_left < 0) sec_left = 0;
+
+                min = parseInt(sec_left / 60);
+                sec = parseInt(sec_left % 60);
+
+                if (sec < 10) sec = '0' + sec.toString();
+
+                countdown.innerHTML = min + ":" + sec + " until your cookies arrive!";  
+                if (sec_left == 0) countdown.innerHTML += " Thank you for your order. Hope your cookies are delicious."
+
+            }, 1000);
+        {% endif %}
+    </script>
 
 </body>
 

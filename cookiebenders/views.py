@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from cookiebenders.forms import SaleForm
 from django.utils import timezone 
@@ -13,8 +13,12 @@ def index(request):
 	has_active_order = False
 	recent_order_id = request.session.get('recent_order')
 	if recent_order_id:
-		recent_order = Sale.objects.get(id=recent_order_id)
-		if recent_order.is_active():
+		try:
+			recent_order = Sale.objects.get(id=recent_order_id)
+		except Sale.DoesNotExist: # case where we manually delete the Sale object, causes error
+			request.session.flush() # ...only deletes in Django 1.8
+			recent_order = None
+		if recent_order and recent_order.is_active():
 			has_active_order = True
 
 	if request.method == 'POST' and not has_active_order:
@@ -29,7 +33,7 @@ def index(request):
 			order_phone = data['phone']
 			order_special_req = data['special_req']
 			order_cost = find_cost(order_num_cookies, order_num_milk)
-			order_time_start = timezone.now() + datetime.timedelta(seconds=5) # hack for form submit time...
+			order_time_start = timezone.now() + datetime.timedelta() # hack for form submit time...
 			order_time_deliv = order_time_start + datetime.timedelta(minutes=15)
 
 			new_order = Sale(num_cookies=order_num_cookies, num_milk=order_num_milk, 
@@ -39,8 +43,7 @@ def index(request):
 			new_order.save()
 
 			request.session['recent_order'] = new_order.id 
-			has_active_order = True
-			recent_order_id = new_order.id 
+			return HttpResponseRedirect("")
 
 		else:
 			form_error = True
