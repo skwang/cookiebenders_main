@@ -149,7 +149,7 @@
         <div class="container-fluid">
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
+                    <a href="#" class="portfolio-box" id="3c0m">
                         <img src="{% static "img/portfolio/3cookies.jpg"%}" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -164,7 +164,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
+                    <a href="#" class="portfolio-box" id="6c0m">
                         <img src="{% static "img/portfolio/6cookies.jpg"%}" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -179,7 +179,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
+                    <a href="#" class="portfolio-box" id="12c0m">
                         <img src="{% static "img/portfolio/6cookies.jpg"%}" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -194,7 +194,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
+                    <a href="#" class="portfolio-box" id="3c1m">
                         <img src="{% static "img/portfolio/6cookiesplusmilk.jpg"%}" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -209,7 +209,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
+                    <a href="/test" class="portfolio-box" id="6c1m">
                         <img src=" {% static "img/portfolio/6cookiesplusmilk1.jpg" %}"class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -224,7 +224,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
+                    <a href="#" class="portfolio-box" id="12c1m">
                         <img src=" {% static "img/portfolio/6cookiesplusmilk.jpg" %}" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -352,6 +352,11 @@
     <script src="{% static "js/creative.js"%}"></script>
 
     <script>
+
+    function padInt(i) {
+        if (i < 10) return '0' + i.toString();
+        else return i.toString();
+    };
         {% if active_order %}
             console.log("{{ time_deliv }}");
             var endtime = new Date("{{ time_deliv.isoformat }}");
@@ -367,13 +372,37 @@
                 min = parseInt(sec_left / 60);
                 sec = parseInt(sec_left % 60);
 
-                if (sec < 10) sec = '0' + sec.toString();
+                min = padInt(min);
+                sec = padInt(sec);
 
                 countdown.innerHTML = min + ":" + sec + " until your cookies arrive!";  
                 if (sec_left == 0) countdown.innerHTML += " Thank you for your order. Hope your cookies are delicious."
 
             }, 1000);
         {% endif %}
+
+    $('.portfolio-box').click(function(e){
+        e.preventDefault();
+        var id = (e.currentTarget.id || e.srcEvent.id); // this may not work in IE!
+        console.log("clicked a " + e.currentTarget.type + "id: " + id);
+        var num_cookies = parseInt(id.split("c")[0]);
+        var num_milk = parseInt(id.split("c")[1].split("m")[0]);
+        console.log("cookies: " + num_cookies + " milk: " + num_milk);
+        bootbox.dialog({
+            title: "Your Order Confirmation",
+            message: '<div> Ordering Cookies!' + '</div>',
+            buttons: {
+                success: {
+                    label: "Place Order",
+                    className: "btn-success",
+                    callback: function(){
+
+                    }
+                }
+            }
+        })
+
+    });
     </script>
 
 </body>
