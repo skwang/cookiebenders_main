@@ -153,11 +153,14 @@
                         <img src="{% static "img/portfolio/3cookies.jpg"%}" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    $3
-                                </div>
                                 <div class="project-name">
                                     Three Chocolate Chip Cookies
+                                </div>
+                                <div class="project-category text-faded">
+                                    $3.00
+                                </div>
+                                <div class="click-now">
+                                    Click to Order Now!
                                 </div>
                             </div>
                         </div>
@@ -168,11 +171,14 @@
                         <img src="{% static "img/portfolio/6cookies.jpg"%}" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    $5
-                                </div>
                                 <div class="project-name">
                                     Six Chocolate Chip Cookies
+                                </div>
+                                <div class="project-category text-faded">
+                                    $5.00
+                                </div>
+                                <div class="click-now">
+                                    Click to Order Now!
                                 </div>
                             </div>
                         </div>
@@ -183,11 +189,14 @@
                         <img src="{% static "img/portfolio/6cookies.jpg"%}" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    $9
-                                </div>
                                 <div class="project-name">
                                     One Dozen Chocolate Chip Cookies
+                                </div>
+                                <div class="project-category text-faded">
+                                    $9.00
+                                </div>
+                                <div class="click-now">
+                                    Click to Order Now!
                                 </div>
                             </div>
                         </div>
@@ -198,11 +207,14 @@
                         <img src="{% static "img/portfolio/6cookiesplusmilk.jpg"%}" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    $4
-                                </div>
                                 <div class="project-name">
                                     Three Chocolate Chip Cookies<br> Plus Milk
+                                </div>
+                                <div class="project-category text-faded">
+                                    $4.00
+                                </div>
+                                <div class="click-now">
+                                    Click to Order Now!
                                 </div>
                             </div>
                         </div>
@@ -213,11 +225,14 @@
                         <img src=" {% static "img/portfolio/6cookiesplusmilk1.jpg" %}"class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    $6
-                                </div>
                                 <div class="project-name">
                                     Six Chocolate Chip Cookies<br> Plus Milk
+                                </div>
+                                <div class="project-category text-faded">
+                                    $6.00
+                                </div>
+                                <div class="click-now">
+                                    Click to Order Now!
                                 </div>
                             </div>
                         </div>
@@ -228,11 +243,14 @@
                         <img src=" {% static "img/portfolio/6cookiesplusmilk.jpg" %}" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    $10
-                                </div>
                                 <div class="project-name">
                                     One Dozen Chocolate Chip Cookies<br> Plus Milk
+                                </div>
+                                <div class="project-category text-faded">
+                                    $10.00
+                                </div>
+                                <div class="click-now">
+                                    Click to Order Now!
                                 </div>
                             </div>
                         </div>
@@ -272,14 +290,14 @@
                                         <div class="form-group">
                                             <label for="name">Deliver to </label>
                                             <input class="form-control" id="id_location" maxlength="128" name="location" 
-                                            placeholder="Hallway and Room # " type="text">
+                                            placeholder="Hallway and Room # " type="text" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Payment Method</label>
                                             <ul id="payment_meth_radio">
                                             <li>
                                                 <label for="payment_meth_radio_0">
-                                                <input id="payment_meth_radio_0" name="payment_meth" type="radio" value="C"> Cash</label>
+                                                <input id="payment_meth_radio_0" name="payment_meth" type="radio" value="C" required> Cash</label>
                                             </li>
                                             <li>
                                                 <label for="payment_meth_radio_1">
@@ -292,11 +310,11 @@
                                     <div class="row">
                                             <div class="form-group col-sm-6 col-xs-12">
                                                 <label for="name">Contact Info</label>
-                                                <input id="id_name" class="form-control" maxlength="128" name="name" placeholder="Name" type="text">
+                                                <input id="id_name" class="form-control" maxlength="128" name="name" placeholder="Name" type="text" required>
                                             </div>
                                             <div class="form-group col-sm-6 col-xs-12 form-pad-top">
                                                 
-                                                <input id="id_phone" class="form-control" maxlength="16" name="phone" placeholder="Number" type="text">
+                                                <input id="id_phone" class="form-control" maxlength="16" name="phone" placeholder="Number" type="text" required>
                                             </div>
                                         
                                     </div>
@@ -315,6 +333,8 @@
             </div>
         </div>
     </section>
+
+
 
     <section class="bg-dark" id="contact">
         <div class="container">
@@ -376,7 +396,7 @@
                 sec = padInt(sec);
 
                 countdown.innerHTML = min + ":" + sec + " until your cookies arrive!";  
-                if (sec_left == 0) countdown.innerHTML += " Thank you for your order. Hope your cookies are delicious."
+                if (sec_left == 0) countdown.innerHTML += " Thank you for your order. Hope your cookies are delicious.";
 
             }, 1000);
         {% endif %}
@@ -388,19 +408,91 @@
         var num_cookies = parseInt(id.split("c")[0]);
         var num_milk = parseInt(id.split("c")[1].split("m")[0]);
         console.log("cookies: " + num_cookies + " milk: " + num_milk);
+        
         bootbox.dialog({
             title: "Your Order Confirmation",
-            message: '<div> Ordering Cookies!' + '</div>',
+            message: '<div class="row">'
+                        +'<div class="col-xs-12">'
+                            +'<div>' 
+                                + '<p> Please review your order below and provide the remaining info for delivery before submitting it to our bakers.' 
+                                + '</p>' 
+                            + '</div>' 
+                            + '<form id="sale_form2" method="POST" action="">'
+                                + "{% csrf_token %}"
+                                + '<input class="form-control" id="id_num_cookies" name="num_cookies" type="hidden" max="24" min="3" value="3">'
+                                + '<input class="form-control" id="id_num_milk" name="num_milk" type="hidden" max="3" min="0" value="0">'
+                                + '<div class="form-group popup-form col-sm-12">'
+                                    + '<div class="row">'
+                                        + '<div class="col-xs-6">'
+                                            +'<label>Number of Cookies: <span class="display-size" id="num_cookie_display"></span></label> '
+                                        + '</div>'
+                                        + '<div class="col-xs-6">'
+                                            +'<label>Number of Milk: <span class="display-size" id="num_milk_display"></span></label> '
+                                        + '</div>'
+                                    + '</div>'
+                                + '</div>'
+                                + '<div class="form-group popup-form col-sm-6">'
+                                    + '<label for="name">Deliver to</label>'
+                                    + '<input class="form-control" id="id_location" maxlength="128" name="location" placeholder="Hallway and Room # " type="text" required>'
+                                + '</div>'
+                                + '<div class="form-group popup-form col-sm-6">'
+                                    + '<label for="name">Payment Method</label>'
+                                    +  '<ul id="payment_meth_radio">'
+                                        + '<li>'
+                                            + '<label for="payment_meth_radio_0">'
+                                            + '<input id="payment_meth_radio_0" name="payment_meth" type="radio" value="C" required> Cash</label>'
+                                        + '</li>'
+                                        + '<li>'
+                                            + '<label for="payment_meth_radio_1">'
+                                            + '<input id="payment_meth_radio_1" name="payment_meth" type="radio" value="O"> Online</label>'
+                                        + '</li>'
+                                    + '</ul>'
+                                + '</div>'
+                                + '<div class="form-group popup-form col-sm-12">'
+                                    + '<div class="row">'
+                                            +'<div class="form-group col-sm-6 col-xs-12">'
+                                                +'<label for="name">Contact Info</label>'
+                                                +'<input id="id_name" class="form-control" maxlength="128" name="name" placeholder="Name" type="text" required>'
+                                            +'</div>'
+                                            +'<div class="form-group popup-form col-sm-6 col-xs-12 form-pad-top">'
+                                                +'<input id="id_phone" class="form-control" maxlength="16" name="phone" placeholder="Number" type="text" required>'
+                                            +'</div>'
+                                    + '</div>'
+                                + '</div>'
+                                + '<div class="form-group popup-form col-sm-7">'
+                                    +'<label for="name">Special Requests</label>'
+                                        +'<textarea id="id_special_req" class="form-control" maxlength="5000" name="special_req" placeholder="Optional"></textarea>'
+                                +'</div>'
+                                +'<div class="form-group popup-form col-sm-5">'
+                                    +'<label>Summary</label>'
+                                    +'<div class="inner-order-total">'
+                                        +'<div>Shipping: <strong>FREE</strong> </div>'
+                                        +'<div>Delivery: <span id="deliv_time_display">15</span> minutes'
+                                        +'<div>Total Cost: <strong><span id="cost_total_display"></span><strong></div>'
+                                    +'</div>'
+                                + '</div>' 
+                                + '<button type="submit" class="hide" id="submit_popup_order">Place Order</button>'
+                            + '</form>'
+                        + '</div>'
+                    + '</div>',
             buttons: {
                 success: {
                     label: "Place Order",
                     className: "btn-success",
                     callback: function(){
+                        $('#submit_popup_order').click();
+                        return false;
 
                     }
                 }
             }
         })
+        var testlol = document.getElementById("testlol");
+        $('#num_cookie_display').html(num_cookies);
+        $('#num_milk_display').html(num_milk);
+        $.get('/get_cost/', {num_cookies: num_cookies, num_milk: num_milk}, function(cost){
+            $('#cost_total_display').html('$' + cost);
+        });
 
     });
     </script>

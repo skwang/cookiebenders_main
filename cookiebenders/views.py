@@ -64,6 +64,23 @@ def index(request):
 
 	return render(request, 'cookiebenders/index.html', context_dict)
 
+# ajax backend
+def get_cost(request):
+
+	num_cookies = None
+	num_milk = None
+	if request.method == 'GET':
+		num_cookies = request.GET['num_cookies']
+		num_milk = request.GET['num_milk']
+	print num_cookies
+	print num_milk
+	if num_cookies and num_milk:
+		return HttpResponse(find_cost(int(num_cookies), int(num_milk)))
+	else:
+		return HttpResponse(0)
+
+
+# private helper method
 def find_cost(num_cookies, num_milk):
 	# cost variables -- make global? 
 	cost_of_12 = 9
